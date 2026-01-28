@@ -1,27 +1,40 @@
+import { motion } from "framer-motion";
+
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-white dark:bg-gray-950">
-      
+
       {/* Background glow */}
-      <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-purple-300/40 rounded-full blur-[120px]" />
-      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-purple-400/30 rounded-full blur-[120px]" />
+      <motion.div
+        animate={{ y: [0, 20, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-purple-300/40 rounded-full blur-[120px]"
+      />
+      <motion.div
+        animate={{ y: [0, -20, 0] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-purple-400/30 rounded-full blur-[120px]"
+      />
 
       <div className="relative max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
         {/* LEFT CONTENT */}
-        <div>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
           {/* Badge */}
           <span className="inline-flex items-center gap-2 px-4 py-1 rounded-full text-sm bg-purple-100 text-purple-700 mb-6">
             ✨ Your Opinion Matters
           </span>
 
-{/* Heading */}
-<h1 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 dark:text-white">
-  Transform <br />
-  <span className="text-purple-600">QR Codes</span> <br />
-  Into Reviews
-</h1>
-
+          {/* Heading */}
+          <h1 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 dark:text-white">
+            Transform <br />
+            <span className="text-purple-600">QR Codes</span> <br />
+            Into Reviews
+          </h1>
 
           {/* Description */}
           <p className="mt-6 text-gray-600 max-w-xl">
@@ -54,40 +67,59 @@ export default function Hero() {
               <strong>25,000+</strong> Happy Businesses
             </span>
           </div>
-        </div>
+        </motion.div>
 
         {/* RIGHT CARD */}
         <div className="flex justify-center lg:justify-end">
-          <div className="relative w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] rounded-3xl bg-gradient-to-br from-purple-200 to-purple-100 shadow-xl flex items-center justify-center">
-
+          <motion.div
+            animate={{ y: [0, -15, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="relative w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] rounded-3xl bg-gradient-to-br from-purple-200 to-purple-100 shadow-xl flex items-center justify-center"
+          >
             {/* QR */}
-            <div className="w-40 h-40 rounded-2xl bg-purple-500 flex items-center justify-center">
+            <motion.div
+              animate={{ scale: [1, 1.05, 1] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              className="w-40 h-40 rounded-2xl bg-purple-500 flex items-center justify-center"
+            >
               <div className="w-24 h-24 grid grid-cols-3 gap-2">
                 {[...Array(9)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="bg-white rounded-sm"
-                  />
+                  <div key={i} className="bg-white rounded-sm" />
                 ))}
               </div>
-            </div>
+            </motion.div>
 
             {/* Floating card - Rating */}
-            <div className="absolute -top-4 -right-4 bg-white rounded-xl shadow-md px-3 py-2 text-sm">
-              ⭐ Rating
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="absolute -top-4 -right-4 bg-white rounded-xl shadow-md px-3 py-2 text-sm"
+            >
+              ⭐ 4.9 Rating
+            </motion.div>
 
             {/* Floating card - Scans */}
-            <div className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-md px-3 py-2 text-sm">
-              📈 Scans
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.6 }}
+              className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-md px-3 py-2 text-sm"
+            >
+              📈 1.2k Scans
+            </motion.div>
 
             {/* Footer text */}
-            <div className="absolute bottom-6 text-center text-sm text-purple-700 font-medium">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+              className="absolute bottom-6 text-center text-sm text-purple-700 font-medium"
+            >
               One scan away from <br />
               <span className="font-bold">Your Next 5-Star Review</span>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
 
       </div>
