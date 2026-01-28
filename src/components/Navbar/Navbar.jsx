@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
 
 export default function Navbar() {
   const [theme, setTheme] = useState("light");
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // ✅ Dark mode
+  // 🌙 Dark mode handling
   useEffect(() => {
     const html = document.documentElement;
     theme === "dark"
@@ -22,7 +23,7 @@ export default function Navbar() {
 
   return (
     <nav className="relative w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
-
+      
       {/* Purple glow */}
       <div className="absolute inset-y-0 right-0 w-[40%] bg-gradient-to-l from-purple-300/40 to-transparent dark:from-purple-800/30 pointer-events-none" />
 
@@ -51,14 +52,21 @@ export default function Navbar() {
 
         {/* Desktop actions */}
         <div className="hidden md:flex items-center gap-5">
+          
+          {/* 🌙 / ☀️ Theme toggle */}
           <button
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
+            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            aria-label="Toggle theme"
           >
-            {theme === "light" ? "🌙" : "☀️"}
+            {theme === "light" ? (
+              <MdOutlineDarkMode size={22} />
+            ) : (
+              <MdOutlineLightMode size={22} />
+            )}
           </button>
 
-          {/* ✅ Sign In → signup page */}
+          {/* Sign In */}
           <Link
             to="/signup"
             className="text-gray-600 dark:text-gray-300 hover:text-purple-600 font-medium"
@@ -66,7 +74,7 @@ export default function Navbar() {
             Sign In
           </Link>
 
-          {/* ✅ Get Started → signup page */}
+          {/* Get Started */}
           <Link
             to="/signup"
             className="px-5 py-2 rounded-lg text-white font-medium bg-gradient-to-r from-purple-600 to-indigo-600 shadow-md hover:opacity-90 transition"
@@ -75,7 +83,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile button */}
+        {/* Mobile menu button */}
         <button
           className="md:hidden text-2xl"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -101,11 +109,17 @@ export default function Navbar() {
             ))}
 
             <div className="flex items-center justify-between pt-4">
+              
+              {/* 🌙 / ☀️ Mobile theme toggle */}
               <button
                 onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
+                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition"
               >
-                {theme === "light" ? "🌙" : "☀️"}
+                {theme === "light" ? (
+                  <MdOutlineDarkMode size={22} />
+                ) : (
+                  <MdOutlineLightMode size={22} />
+                )}
               </button>
 
               <Link
